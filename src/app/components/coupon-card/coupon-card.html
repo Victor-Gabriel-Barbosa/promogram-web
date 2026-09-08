@@ -1,0 +1,28 @@
+<mat-card class="card" appearance="outlined">
+  <img mat-card-image src="{{ coupon?.imagem || imagePlaceholder }}" alt="{{ coupon?.nome }}">
+  <mat-card-content>
+    <h2 class="pt-2 font-bold line-clamp-2 min-h-12 leading-6">{{ coupon?.nome }}</h2>
+    <p class="line-clamp-2 min-h-12 leading-6">
+      @if (coupon?.desconto != null) {
+      Desconto: R$ {{ coupon?.desconto }}
+      }
+    </p>
+    <p class="line-clamp-2 min-h-12 leading-6">
+      @if (coupon?.codigo != null) {
+      Código:
+      <span class="cursor-pointer text-(--mat-sys-primary)" [cdkCopyToClipboard]="coupon?.codigo ?? ''"
+        (cdkCopyToClipboardCopied)="onCopied()" (cdkCopyToClipboardFailed)="onCopyFailed()">
+        {{ coupon.codigo }}
+      </span>
+      }
+    </p>
+    <p class="line-clamp-2 min-h-12 leading-6">
+      @if (coupon?.limite_minimo != null) {
+      Valor mínimo: R$ {{ coupon?.limite_minimo }}
+      }
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <a matButton="filled" href="{{ coupon?.link }}" target="_blank" class="w-full mx-2">{{ buttonText }}</a>
+  </mat-card-actions>
+</mat-card>

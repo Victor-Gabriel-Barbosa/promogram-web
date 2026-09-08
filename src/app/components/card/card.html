@@ -1,0 +1,10 @@
+<mat-card class="card" appearance="outlined">
+  <img mat-card-image src="{{ photo }}" alt="{{ photoAlt }}">
+  <mat-card-content>
+    <h2 class="pt-2 font-bold line-clamp-2 min-h-12 leading-6">{{ title }}</h2>
+    <p class="line-clamp-2 min-h-12 leading-6">{{ description }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <a matButton="filled" href="{{ buttonLink }}" target="_blank" class="w-full mx-2">{{ buttonText }}</a>
+  </mat-card-actions>
+</mat-card>

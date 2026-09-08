@@ -1,0 +1,6 @@
+<button mat-icon-button (click)="toggleTheme()" matTooltip="{{ darkMode ? 'Ativar tema claro' : 'Ativar tema escuro' }}"
+  [attr.aria-label]="darkMode ? 'Ativar tema claro' : 'Ativar tema escuro'">
+  <mat-icon>
+    {{ darkMode ? 'light_mode' : 'dark_mode' }}
+  </mat-icon>
+</button>

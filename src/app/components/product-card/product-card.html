@@ -1,0 +1,28 @@
+<mat-card class="card" appearance="outlined">
+  <img mat-card-image src="{{ product?.imagem || imagePlaceholder }}" alt="{{ product?.nome }}">
+  <mat-card-content>
+    <h2 class="pt-2 font-bold line-clamp-2 min-h-12 leading-6">{{ product?.nome }}</h2>
+    <p class="line-clamp-2 min-h-12 leading-6">
+      @if (product?.preco != null) {
+      Preço: R$ {{ product?.preco }}
+      }
+    </p>
+    <p class="line-clamp-2 min-h-12 leading-6">
+      @if (product?.preco_parcelado != null) {
+      Preço parcelado: R$ {{ product?.preco_parcelado }}
+      }
+    </p>
+    <p class="line-clamp-2 min-h-12 leading-6">
+      @if (product?.cupom != null) {
+      Cupom:
+      <span class="cursor-pointer text-(--mat-sys-primary)" [cdkCopyToClipboard]="product?.cupom ?? ''"
+        (cdkCopyToClipboardCopied)="onCopied()" (cdkCopyToClipboardFailed)="onCopyFailed()">
+        {{ product.cupom }}
+      </span>
+      }
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <a matButton="filled" href="{{ product?.link }}" target="_blank" class="w-full mx-2">{{ buttonText }}</a>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,41 @@
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme((color: (primary: mat.$cyan-palette,
+        tertiary: mat.$orange-palette,
+        theme-type: light,
+      ),
+      typography: Roboto,
+      density: 0,
+    ));
+}
+
+html.dark {
+  @include mat.theme((color: (primary: mat.$cyan-palette,
+        tertiary: mat.$orange-palette,
+        theme-type: dark,
+      ),
+      typography: Roboto,
+      density: 0,
+    ));
+}
+
+body {
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+  margin: 0;
+  height: 100%;
+
+  * {
+    transition:
+      background-color 500ms ease,
+      color 500ms ease,
+      border-color 500ms ease;
+  }
+}
+
+::selection {
+  background-color: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+}
