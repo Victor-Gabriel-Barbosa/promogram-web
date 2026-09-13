@@ -1,4 +1,11 @@
-<a [routerLink]="item.link" [matButton]="item.buttonType ?? 'text'" [matTooltip]="item.tooltip">
-  <p class="truncate min-w-0">{{ item.label }}</p>
-  <mat-icon iconPositionEnd class="shrink-0">{{ item.icon }}</mat-icon>
-</a>
+@if (isExternal) {
+  <a [href]="item.link" target="_blank" rel="noopener noreferrer" [matButton]="item.buttonType ?? 'text'" [matTooltip]="item.tooltip">
+    <p class="truncate min-w-0">{{ item.label }}</p>
+    <mat-icon iconPositionEnd class="shrink-0">{{ item.icon }}</mat-icon>
+  </a>
+} @else {
+  <a [routerLink]="item.link" [routerLinkActive]="'nav-item-active'" [routerLinkActiveOptions]="{ exact: item.link === '/' }" [matButton]="item.buttonType ?? 'text'" [matTooltip]="item.tooltip">
+    <p class="truncate min-w-0">{{ item.label }}</p>
+    <mat-icon iconPositionEnd class="shrink-0">{{ item.icon }}</mat-icon>
+  </a>
+}

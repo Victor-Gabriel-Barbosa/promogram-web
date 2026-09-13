@@ -1,0 +1,91 @@
+<div class="max-w-7xl mx-auto px-4 py-6 flex flex-col gap-10">
+  <!-- Hero Section -->
+  <section class="rounded-2xl p-6 sm:p-10 bg-linear-to-r from-(--mat-sys-primary-container) to-(--mat-sys-surface-container-high) border border-(--mat-sys-outline-variant) shadow-xs flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex flex-col gap-3 text-center md:text-left max-w-xl">
+      <div class="inline-flex items-center gap-2 self-center md:self-start px-3 py-1 rounded-full text-xs font-semibold bg-(--mat-sys-primary) text-(--mat-sys-on-primary)">
+        <mat-icon class="!w-4 !h-4 !text-base leading-none">local_fire_department</mat-icon>
+        <span>Ofertas atualizadas em tempo real</span>
+      </div>
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-(--mat-sys-on-primary-container) tracking-tight">
+        Economize com as melhores ofertas e cupons
+      </h2>
+      <p class="text-sm sm:text-base text-(--mat-sys-on-surface-variant)">
+        Explore milhares de promoções verificadas de produtos e cupons exclusivos das maiores lojas do Brasil.
+      </p>
+      <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 pt-2">
+        <a mat-flat-button routerLink="/produtos">
+          <mat-icon iconPositionEnd>shopping_bag</mat-icon>
+          Ver Produtos
+        </a>
+        <a mat-stroked-button routerLink="/cupons">
+          <mat-icon iconPositionEnd>local_offer</mat-icon>
+          Ver Cupons
+        </a>
+      </div>
+    </div>
+    
+    <div class="grid grid-cols-2 gap-4 w-full md:w-auto">
+      <a routerLink="/produtos" class="group flex flex-col items-center justify-center p-5 rounded-xl bg-(--mat-sys-surface) border border-(--mat-sys-outline-variant) hover:border-(--mat-sys-primary) hover:shadow-md transition-all text-center">
+        <div class="w-12 h-12 rounded-full bg-(--mat-sys-primary-container) text-(--mat-sys-primary) flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+          <mat-icon>shopping_bag</mat-icon>
+        </div>
+        <span class="font-bold text-sm text-(--mat-sys-on-surface)">Produtos</span>
+        <span class="text-xs text-(--mat-sys-on-surface-variant)">Últimas ofertas</span>
+      </a>
+      
+      <a routerLink="/cupons" class="group flex flex-col items-center justify-center p-5 rounded-xl bg-(--mat-sys-surface) border border-(--mat-sys-outline-variant) hover:border-(--mat-sys-primary) hover:shadow-md transition-all text-center">
+        <div class="w-12 h-12 rounded-full bg-(--mat-sys-tertiary-container) text-(--mat-sys-tertiary) flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+          <mat-icon>local_offer</mat-icon>
+        </div>
+        <span class="font-bold text-sm text-(--mat-sys-on-surface)">Cupons</span>
+        <span class="text-xs text-(--mat-sys-on-surface-variant)">Códigos ativos</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Produtos Section -->
+  <section class="flex flex-col gap-4">
+    <div class="flex items-center justify-between px-2">
+      <div>
+        <h3 class="text-xl font-bold text-(--mat-sys-primary) flex items-center gap-2">
+          <mat-icon>shopping_bag</mat-icon>
+          Destaques em Produtos
+        </h3>
+        <p class="text-xs text-(--mat-sys-on-surface-variant)">As promoções mais quentes do momento</p>
+      </div>
+      <a mat-button routerLink="/produtos">
+        <span>Ver todos</span>
+        <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+      </a>
+    </div>
+
+    <app-grid title="Produtos">
+      @for (product of products(); track product.id) {
+        <app-product-card [product]="product" />
+      }
+    </app-grid>
+  </section>
+
+  <!-- Cupons Section -->
+  <section class="flex flex-col gap-4">
+    <div class="flex items-center justify-between px-2">
+      <div>
+        <h3 class="text-xl font-bold text-(--mat-sys-primary) flex items-center gap-2">
+          <mat-icon>local_offer</mat-icon>
+          Destaques em Cupons
+        </h3>
+        <p class="text-xs text-(--mat-sys-on-surface-variant)">Códigos promocionais para aplicar no carrinho</p>
+      </div>
+      <a mat-button routerLink="/cupons">
+        <span>Ver todos</span>
+        <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+      </a>
+    </div>
+
+    <app-grid title="Cupons">
+      @for (coupon of coupons(); track coupon.id) {
+        <app-coupon-card [coupon]="coupon" />
+      }
+    </app-grid>
+  </section>
+</div>

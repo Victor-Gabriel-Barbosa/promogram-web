@@ -1,16 +1,4 @@
 <app-navbar [title]="title()" logo="/favicon.svg" [items]="navbarItems()"></app-navbar>
-<div class="pt-4">
-  <app-grid title="Produtos">
-    @for (product of products(); track product.id) {
-    <app-product-card [product]="product" />
-    }
-  </app-grid>
-
-  <app-grid title="Cupons">
-    @for (coupon of coupons(); track coupon.id) {
-    <app-coupon-card [coupon]="coupon" />
-    }
-  </app-grid>
-</div>
-
-<router-outlet />
+<main class="min-h-[calc(100vh-70px)]">
+  <router-outlet />
+</main>

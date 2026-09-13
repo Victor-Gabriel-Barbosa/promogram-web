@@ -1,0 +1,69 @@
+<div class="max-w-7xl mx-auto px-4 py-6 flex flex-col gap-6">
+  <!-- Header Banner -->
+  <header class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 rounded-2xl bg-(--mat-sys-surface-container) border border-(--mat-sys-outline-variant)">
+    <div class="flex items-center gap-4">
+      <div class="w-12 h-12 rounded-xl bg-(--mat-sys-primary) text-(--mat-sys-on-primary) flex items-center justify-center shrink-0 shadow-xs">
+        <mat-icon class="!w-7 !h-7 !text-3xl leading-none">shopping_bag</mat-icon>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="text-2xl font-bold text-(--mat-sys-on-surface)">Produtos & Ofertas</h1>
+          <span class="text-xs px-2.5 py-0.5 rounded-full font-medium bg-(--mat-sys-primary-container) text-(--mat-sys-on-primary-container)">
+            {{ filteredProducts().length }} {{ filteredProducts().length === 1 ? 'item' : 'itens' }}
+          </span>
+        </div>
+        <p class="text-sm text-(--mat-sys-on-surface-variant)">
+          Descubra os menores preços e ofertas verificadas em diversas lojas
+        </p>
+      </div>
+    </div>
+
+    <!-- Search Box -->
+    <div class="w-full md:w-80">
+      <mat-form-field appearance="outline" class="w-full" subscriptSizing="dynamic">
+        <mat-icon matPrefix class="mr-2 text-(--mat-sys-on-surface-variant)">search</mat-icon>
+        <input
+          matInput
+          type="text"
+          placeholder="Buscar produtos..."
+          [ngModel]="searchTerm()"
+          (ngModelChange)="searchTerm.set($event)"
+        />
+        @if (searchTerm()) {
+          <button matSuffix mat-icon-button type="button" aria-label="Limpar busca" (click)="clearSearch()">
+            <mat-icon>close</mat-icon>
+          </button>
+        }
+      </mat-form-field>
+    </div>
+  </header>
+
+  <!-- Products Grid / List -->
+  <main>
+    @if (filteredProducts().length > 0) {
+      <app-grid title="Todos os Produtos">
+        @for (product of filteredProducts(); track product.id) {
+          <app-product-card [product]="product" />
+        }
+      </app-grid>
+    } @else {
+      <div class="flex flex-col items-center justify-center p-12 text-center rounded-2xl border border-dashed border-(--mat-sys-outline-variant) bg-(--mat-sys-surface-container-low)">
+        <mat-icon class="!w-16 !h-16 !text-6xl text-(--mat-sys-outline) mb-4">search_off</mat-icon>
+        <h3 class="text-lg font-semibold text-(--mat-sys-on-surface) mb-1">Nenhum produto encontrado</h3>
+        <p class="text-sm text-(--mat-sys-on-surface-variant) max-w-md mb-4">
+          @if (searchTerm()) {
+            Não encontramos ofertas para "{{ searchTerm() }}". Tente buscar por outros termos.
+          } @else {
+            Nenhuma oferta disponível no momento. Volte novamente mais tarde!
+          }
+        </p>
+        @if (searchTerm()) {
+          <button mat-stroked-button (click)="clearSearch()">
+            <mat-icon>refresh</mat-icon>
+            Limpar Filtro
+          </button>
+        }
+      </div>
+    }
+  </main>
+</div>

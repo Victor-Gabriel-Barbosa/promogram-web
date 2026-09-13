@@ -1,0 +1,77 @@
+<div class="max-w-7xl mx-auto px-4 py-6 flex flex-col gap-6">
+  <!-- Header Banner -->
+  <header class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 rounded-2xl bg-(--mat-sys-surface-container) border border-(--mat-sys-outline-variant)">
+    <div class="flex items-center gap-4">
+      <div class="w-12 h-12 rounded-xl bg-(--mat-sys-tertiary) text-(--mat-sys-on-tertiary) flex items-center justify-center shrink-0 shadow-xs">
+        <mat-icon class="!w-7 !h-7 !text-3xl leading-none">local_offer</mat-icon>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="text-2xl font-bold text-(--mat-sys-on-surface)">Cupons de Desconto</h1>
+          <span class="text-xs px-2.5 py-0.5 rounded-full font-medium bg-(--mat-sys-tertiary-container) text-(--mat-sys-on-tertiary-container)">
+            {{ filteredCoupons().length }} {{ filteredCoupons().length === 1 ? 'cupom' : 'cupons' }}
+          </span>
+        </div>
+        <p class="text-sm text-(--mat-sys-on-surface-variant)">
+          Pegue os melhores códigos promocionais válidos e economize no carrinho
+        </p>
+      </div>
+    </div>
+
+    <!-- Search Box -->
+    <div class="w-full md:w-80">
+      <mat-form-field appearance="outline" class="w-full" subscriptSizing="dynamic">
+        <mat-icon matPrefix class="mr-2 text-(--mat-sys-on-surface-variant)">search</mat-icon>
+        <input
+          matInput
+          type="text"
+          placeholder="Buscar por loja ou código..."
+          [ngModel]="searchTerm()"
+          (ngModelChange)="searchTerm.set($event)"
+        />
+        @if (searchTerm()) {
+          <button matSuffix mat-icon-button type="button" aria-label="Limpar busca" (click)="clearSearch()">
+            <mat-icon>close</mat-icon>
+          </button>
+        }
+      </mat-form-field>
+    </div>
+  </header>
+
+  <!-- Tip Banner -->
+  <div class="flex items-center gap-3 p-4 rounded-xl bg-(--mat-sys-primary-container) text-(--mat-sys-on-primary-container) border border-(--mat-sys-primary)/20 text-xs sm:text-sm">
+    <mat-icon class="!w-5 !h-5 !text-xl shrink-0">info</mat-icon>
+    <span>
+      <strong>Dica:</strong> Ao clicar no botão de copiar em um cupom, o código vai direto para a sua área de transferência para colar no checkout da loja!
+    </span>
+  </div>
+
+  <!-- Coupons Grid / List -->
+  <main>
+    @if (filteredCoupons().length > 0) {
+      <app-grid title="Todos os Cupons">
+        @for (coupon of filteredCoupons(); track coupon.id) {
+          <app-coupon-card [coupon]="coupon" />
+        }
+      </app-grid>
+    } @else {
+      <div class="flex flex-col items-center justify-center p-12 text-center rounded-2xl border border-dashed border-(--mat-sys-outline-variant) bg-(--mat-sys-surface-container-low)">
+        <mat-icon class="!w-16 !h-16 !text-6xl text-(--mat-sys-outline) mb-4">search_off</mat-icon>
+        <h3 class="text-lg font-semibold text-(--mat-sys-on-surface) mb-1">Nenhum cupom encontrado</h3>
+        <p class="text-sm text-(--mat-sys-on-surface-variant) max-w-md mb-4">
+          @if (searchTerm()) {
+            Não encontramos cupons para "{{ searchTerm() }}". Tente buscar por outros termos ou lojas.
+          } @else {
+            Nenhum cupom ativo no momento. Fique atento às próximas atualizações!
+          }
+        </p>
+        @if (searchTerm()) {
+          <button mat-stroked-button (click)="clearSearch()">
+            <mat-icon>refresh</mat-icon>
+            Limpar Filtro
+          </button>
+        }
+      </div>
+    }
+  </main>
+</div>

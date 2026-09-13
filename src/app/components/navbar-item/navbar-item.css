@@ -1,0 +1,5 @@
+.nav-item-active {
+  background-color: var(--mat-sys-primary-container) !important;
+  color: var(--mat-sys-on-primary-container) !important;
+  font-weight: 600;
+}
