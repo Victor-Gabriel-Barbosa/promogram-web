@@ -20,12 +20,12 @@ export class Home {
   private readonly couponService = inject(CouponService);
 
   readonly products = toSignal(
-    this.productService.getProducts(),
+    this.productService.getProducts(12),
     { initialValue: [] }
   );
 
   readonly coupons = toSignal(
-    this.couponService.getCoupons(),
+    this.couponService.getCoupons(12),
     { initialValue: [] }
   );
 }
