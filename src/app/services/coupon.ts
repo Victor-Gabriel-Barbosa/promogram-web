@@ -13,8 +13,9 @@ export class CouponService {
 
   constructor(private readonly http: HttpClient) { }
 
-  getCoupons(limit: number = 10): Observable<Coupon[]> {
-    const params = new HttpParams().set('limit', limit);
+  getCoupons(limit?: number): Observable<Coupon[]> {
+    let params = new HttpParams();
+    if (limit !== undefined) params = params.set('limit', limit);
     return this.http.get<Coupon[]>(this.apiUrl, { params });
   }
 }

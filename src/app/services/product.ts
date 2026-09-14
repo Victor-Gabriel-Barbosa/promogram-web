@@ -13,8 +13,9 @@ export class ProductService {
 
   constructor(private readonly http: HttpClient) { }
 
-  getProducts(limit: number = 10): Observable<Product[]> {
-    const params = new HttpParams().set('limit', limit);
+  getProducts(limit?: number): Observable<Product[]> {
+    let params = new HttpParams();
+    if (limit !== undefined) params = params.set('limit', limit);
     return this.http.get<Product[]>(this.apiUrl, { params });
   }
 }
