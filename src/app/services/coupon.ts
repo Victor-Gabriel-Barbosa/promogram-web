@@ -8,7 +8,7 @@ import { Coupon } from '../models/coupon';
   providedIn: 'root'
 })
 export class CouponService {
-  private readonly apiUrl = `${environment.apiUrl}/cupons?limit=10`;
+  private readonly apiUrl = `${environment.apiUrl}/cupons`;
 
   constructor(private readonly http: HttpClient) { }
 
