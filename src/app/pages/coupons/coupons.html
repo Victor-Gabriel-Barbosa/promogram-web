@@ -40,7 +40,13 @@
 
   <!-- Coupons Grid / List -->
   <main>
-    @if (filteredCoupons().length > 0) {
+    @if (loading()) {
+      <app-grid title="Todos os Cupons">
+        @for (i of [1, 2, 3, 4, 5, 6]; track i) {
+          <app-skeleton-card variant="coupon" />
+        }
+      </app-grid>
+    } @else if (filteredCoupons().length > 0) {
       <app-grid title="Todos os Cupons">
         @for (coupon of filteredCoupons(); track coupon.id) {
           <app-coupon-card [coupon]="coupon" />

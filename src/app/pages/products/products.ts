@@ -6,8 +6,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Grid } from '../../components/grid/grid';
 import { ProductCard } from '../../components/product-card/product-card';
+import { SkeletonCard } from '../../components/skeleton-card/skeleton-card';
 import { ProductService } from '../../services/product';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -19,6 +21,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
     MatFormFieldModule,
     Grid,
     ProductCard,
+    SkeletonCard,
   ],
   templateUrl: './products.html',
   styleUrl: './products.css',
@@ -26,8 +29,12 @@ import { toSignal } from '@angular/core/rxjs-interop';
 export class Products {
   private readonly productService = inject(ProductService);
 
+  readonly loading = signal(true);
+
   readonly allProducts = toSignal(
-    this.productService.getProducts(),
+    this.productService.getProducts().pipe(
+      tap(() => this.loading.set(false))
+    ),
     { initialValue: [] }
   );
 
@@ -44,3 +51,4 @@ export class Products {
     this.searchTerm.set('');
   }
 }
+

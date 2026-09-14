@@ -6,8 +6,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Grid } from '../../components/grid/grid';
 import { CouponCard } from '../../components/coupon-card/coupon-card';
+import { SkeletonCard } from '../../components/skeleton-card/skeleton-card';
 import { CouponService } from '../../services/coupon';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-coupons',
@@ -19,6 +21,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
     MatFormFieldModule,
     Grid,
     CouponCard,
+    SkeletonCard,
   ],
   templateUrl: './coupons.html',
   styleUrl: './coupons.css',
@@ -26,8 +29,12 @@ import { toSignal } from '@angular/core/rxjs-interop';
 export class Coupons {
   private readonly couponService = inject(CouponService);
 
+  readonly loading = signal(true);
+
   readonly allCoupons = toSignal(
-    this.couponService.getCoupons(),
+    this.couponService.getCoupons().pipe(
+      tap(() => this.loading.set(false))
+    ),
     { initialValue: [] }
   );
 
@@ -47,3 +54,4 @@ export class Coupons {
     this.searchTerm.set('');
   }
 }
+
