@@ -59,11 +59,19 @@
       </a>
     </div>
 
-    <app-grid title="Produtos">
-      @for (product of products(); track product.id) {
-        <app-product-card [product]="product" />
-      }
-    </app-grid>
+    @if (productsLoading()) {
+      <app-grid title="Produtos">
+        @for (i of [1, 2, 3, 4, 5, 6, 7, 8]; track i) {
+          <app-skeleton-card variant="product" />
+        }
+      </app-grid>
+    } @else {
+      <app-grid title="Produtos">
+        @for (product of products(); track product.id) {
+          <app-product-card [product]="product" />
+        }
+      </app-grid>
+    }
   </section>
 
   <!-- Cupons Section -->
@@ -82,10 +90,18 @@
       </a>
     </div>
 
-    <app-grid title="Cupons">
-      @for (coupon of coupons(); track coupon.id) {
-        <app-coupon-card [coupon]="coupon" />
-      }
-    </app-grid>
+    @if (couponsLoading()) {
+      <app-grid title="Cupons">
+        @for (i of [1, 2, 3, 4, 5, 6, 7, 8]; track i) {
+          <app-skeleton-card variant="coupon" />
+        }
+      </app-grid>
+    } @else {
+      <app-grid title="Cupons">
+        @for (coupon of coupons(); track coupon.id) {
+          <app-coupon-card [coupon]="coupon" />
+        }
+      </app-grid>
+    }
   </section>
 </div>
