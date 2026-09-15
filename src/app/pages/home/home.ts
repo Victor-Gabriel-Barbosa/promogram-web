@@ -33,14 +33,14 @@ export class Home {
   readonly couponsLoading = signal(true);
 
   readonly products = toSignal(
-    this.productService.getProducts(12).pipe(
+    this.productService.getProducts(10).pipe(
       tap(() => this.productsLoading.set(false))
     ),
     { initialValue: [] }
   );
 
   readonly coupons = toSignal(
-    this.couponService.getCoupons(12).pipe(
+    this.couponService.getCoupons(10).pipe(
       tap(() => this.couponsLoading.set(false))
     ),
     { initialValue: [] }
