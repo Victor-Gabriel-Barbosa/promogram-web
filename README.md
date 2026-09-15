@@ -102,7 +102,7 @@ Sinta-se à vontade para checar a [página de issues](https://github.com/Victor-
 
 - Github: [@Victor-Gabriel-Barbosa](https://github.com/Victor-Gabriel-Barbosa)
 
-## Show your support
+## Mostre seu apoio
 
 Dê uma ⭐️ neste repositório se este projeto te ajudou!
 
