@@ -1,59 +1,111 @@
-# Promogram
+<div align="center">
+  <img src="public/favicon.svg" alt="Promogram Logo" width="140">
+  <h1>Promogram Web</h1>
+</div>
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.6.
+<p align="center">
+  <img src="https://img.shields.io/badge/Angular-22-DD0031.svg?logo=angular&logoColor=white" />
+  <img src="https://img.shields.io/badge/TypeScript-6.0-3178C6.svg?logo=typescript&logoColor=white" />
+  <a href="https://promogram-web.vercel.app" target="_blank">
+    <img alt="demo" src="https://img.shields.io/badge/demo-online-brightgreen.svg" />
+  </a>
+  <a href="https://github.com/Victor-Gabriel-Barbosa/promogram-web/stargazers">
+    <img alt="stars" src="https://img.shields.io/github/stars/Victor-Gabriel-Barbosa/promogram-web.svg?style=social" target="_blank" />
+  </a>
+  <a href="#">
+    <img alt="License: unspecified" src="https://img.shields.io/badge/license-unspecified-lightgrey.svg" target="_blank" />
+  </a>
+  <a href="https://twitter.com/" target="_blank">
+    <img alt="Twitter: Victor-Gabriel-Barbosa" src="https://img.shields.io/badge/-@Victor--Gabriel--Barbosa-1DA1F2?logo=github&logoColor=white" target="_blank" />
+  </a>
+</p>
 
-## Development server
+> Frontend Angular do **Promogram**, um agregador de ofertas de produtos e cupons de desconto das principais lojas do Brasil. Consome a API do Promogram Backend para exibir promoções sempre atualizadas, com busca, cópia de cupons em um clique e tema claro/escuro.
 
-To start a local development server, run:
+## ✨ Demo
 
-```bash
-ng serve
+A aplicação está no ar e pode ser acessada em: <a href="https://promogram-web.vercel.app" target="_blank"><b>🔗 promogram-web.vercel.app</b></a>
+
+Principais telas disponíveis:
+
+- **Início** (`/`) — vitrine com os produtos e cupons em destaque.
+- **Produtos** (`/produtos`) — listagem completa com busca por nome.
+- **Cupons** (`/cupons`) — listagem completa com busca por nome/código e botão de copiar.
+
+## 🚀 Usage
+
+Certifique-se de ter o **Node.js `^22.12.0`** ou superior instalado (requisito mínimo do Angular 22).
+
+Clone o projeto e instale as dependências:
+
+```sh
+git clone https://github.com/Victor-Gabriel-Barbosa/promogram-web.git
+cd promogram-web
+npm install
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Rode em modo desenvolvimento:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```sh
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+A aplicação abre em `http://localhost:4200`. Por padrão, o ambiente de desenvolvimento consome a API em `http://localhost:3000` (configurável em `src/environments/environment.development.ts`).
 
-```bash
-ng generate --help
+Gere o build de produção:
+
+```sh
+npm run build
 ```
 
-## Building
+Rode os testes unitários (Vitest):
 
-To build the project run:
-
-```bash
-ng build
+```sh
+npm test
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 🛠️ Stack
 
-## Running unit tests
+| | |
+|---|---|
+| Framework | Angular 22 (standalone components, signals, `@angular/build`) |
+| UI | Angular Material 22 + Angular CDK |
+| Estilo | Tailwind CSS 4 |
+| Dados | RxJS + `HttpClient` + `toSignal` |
+| Testes | Vitest + jsdom |
+| Deploy | Vercel |
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## 🗂️ Estrutura
 
-```bash
-ng test
+```
+src/app/
+├── components/   # coupon-card, product-card, grid, navbar, navbar-item, skeleton-card, theme-toggle
+├── models/       # Product, Coupon, NavItem
+├── pages/        # home, products, coupons
+└── services/     # ProductService, CouponService
 ```
 
-## Running end-to-end tests
+## 🤝 Como contribuir
 
-For end-to-end (e2e) testing, run:
+Contribuições, issues e sugestões de features são bem-vindas.<br />
+Sinta-se à vontade para checar a [página de issues](https://github.com/Victor-Gabriel-Barbosa/promogram-web/issues).
 
-```bash
-ng e2e
-```
+1. Faça um fork do projeto
+2. Crie sua branch: `git checkout -b feature/minha-feature`
+3. Commit suas mudanças: `git commit -m 'feat: minha feature'`
+4. Push para a branch: `git push origin feature/minha-feature`
+5. Abra um Pull Request
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Autor
 
-## Additional Resources
+👤 **Victor Gabriel Barbosa**
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Github: [@Victor-Gabriel-Barbosa](https://github.com/Victor-Gabriel-Barbosa)
+
+## Show your support
+
+Dê uma ⭐️ neste repositório se este projeto te ajudou!
+
+## 📝 License
+
+Distribuído sob a licença **MIT**. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
